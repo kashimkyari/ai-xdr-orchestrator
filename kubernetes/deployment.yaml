@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-xdr-orchestrator
+  labels:
+    app: ai-xdr-orchestrator
+spec:
+  replicas: 3  # Adjust the number of replicas as needed
+  selector:
+    matchLabels:
+      app: ai-xdr-orchestrator
+  template:
+    metadata:
+      labels:
+        app: ai-xdr-orchestrator
+    spec:
+      containers:
+        - name: ai-xdr-orchestrator
+          image: kashimkyari/ai-xdr-orchestrator:latest  # Replace with your actual image name
+          ports:
+            - containerPort: 5000  # Adjust the port as per your application
+          env:
+            - name: KAFKA_TOPIC
+              value: "security_logs"
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              value: "kafka1:9092,kafka2:9092"  # Replace with your Kafka server addresses
+            - name: GROUP_ID
+              value: "incident_detector"
+            - name: MODEL_PATH
+              value: "models/anomaly_detection_model.pkl"  # Adjust as necessary
+            - name: DECISION_MODEL_PATH
+              value: "models/decision_model.pkl"  # Adjust as necessary
+            - name: LOG_LEVEL
+              value: "INFO"
+      restartPolicy: Always
