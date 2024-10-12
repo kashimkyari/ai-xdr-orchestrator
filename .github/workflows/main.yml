@@ -11,7 +11,6 @@ on:
       - develop
 
 jobs:
-  # Job for linting the code
   lint:
     name: Lint Python Code
     runs-on: ubuntu-latest
@@ -31,9 +30,8 @@ jobs:
           pip install flake8
 
       - name: Run Flake8
-        run: flake8 --max-line-length=88 .
+        run: flake8 --config .flake8
 
-  # Job for running tests
   test:
     name: Run Unit Tests
     runs-on: ubuntu-latest
@@ -56,7 +54,6 @@ jobs:
       - name: Run Tests
         run: pytest
 
-  # Job for building the Docker image
   build:
     name: Build Docker Image
     runs-on: ubuntu-latest
@@ -69,5 +66,4 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - name: Build Docker Image
-        run: |
-          docker build -t ai-xdr-orchestrator .
+        run: docker build --no-cache -t ai-xdr-orchestrator .
