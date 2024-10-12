@@ -19,7 +19,7 @@ The project is modular, allowing easy integration with XSOAR (Security Orchestra
 ## Project Structure
 
 ```plaintext
-ai_xdr_xsoar_siem/
+ai-xdr-orchestrator/
 │
 ├── ai_model/
 │   ├── anomaly_detection.py        # AI-powered anomaly detection using Isolation Forest
@@ -58,8 +58,8 @@ ai_xdr_xsoar_siem/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-repo/ai_xdr_xsoar_siem.git
-cd ai_xdr_xsoar_siem
+git clone https://github.com/kashimkyari/ai-xdr-orchestrator.git
+cd ai-xdr-orchestrator
 ```
 
 ### 2. Install Python Dependencies
